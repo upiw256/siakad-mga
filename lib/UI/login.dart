@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:sistem_akademik/UI/dashboard.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -154,6 +155,10 @@ class _LoginState extends State<Login> {
                                     const SnackBar(
                                         content: Text('Processing Data')),
                                   );
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => Dashboard()));
                                 }
                               },
                               child: const Text(
