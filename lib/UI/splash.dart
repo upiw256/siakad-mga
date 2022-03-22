@@ -1,5 +1,6 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:sistem_akademik/UI/dashboard.dart';
 import 'package:sistem_akademik/UI/login.dart';
 import 'package:page_transition/page_transition.dart';
 
@@ -21,7 +22,7 @@ class Splash extends StatelessWidget {
             ),
           ],
         ),
-        nextScreen: Login(),
+        nextScreen: Dashboard(),
         duration: 3000,
         splashTransition: SplashTransition.fadeTransition,
         pageTransitionType: PageTransitionType.fade,

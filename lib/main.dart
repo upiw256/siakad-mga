@@ -4,6 +4,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:sistem_akademik/UI/dashboard.dart';
 import 'package:sistem_akademik/UI/splash.dart';
 
 import 'UI/login.dart';
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(fontFamily: 'Poppins-Black'),
-      home: Splash(),
+      home: Dashboard(),
     );
   }
 }
