@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_unnecessary_containers, unnecessary_const, prefer_const_constructors, deprecated_member_use, prefer_void_to_null, avoid_init_to_null, unused_import, unused_field, unnecessary_new, unrelated_type_equality_checks, avoid_print, non_constant_identifier_names, unused_local_variable, unnecessary_import, unused_element
+// ignore_for_file: avoid_unnecessary_containers, unnecessary_const, prefer_const_constructors, deprecated_member_use, prefer_void_to_null, avoid_init_to_null, unused_import, unused_field, unnecessary_new, unrelated_type_equality_checks, avoid_print, non_constant_identifier_names, unused_local_variable, unnecessary_import, unused_element, dead_code, unused_label, unnecessary_null_comparison
 
 import 'dart:convert';
 import 'dart:developer' as developer;
@@ -20,14 +20,24 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   TextEditingController userName = new TextEditingController();
   TextEditingController Password = new TextEditingController();
-
-  Future<List> _Login() async {
+  String msg = "";
+  Future<Map<String, dynamic>> _Login() async {
     final response =
         await http.post(Uri.parse("http://192.168.50.2:8000/api/users"), body: {
       "nisn": userName.text,
       "password": Password.text,
     });
-    return json.decode(response.body);
+    var data = json.decode(response.body);
+    final result = data['data'][0];
+    if (data['data'][0]['id'] == null) {
+      setState(() {
+        msg = "Username atau Password salah";
+      });
+    } else {
+      Navigator.pushReplacementNamed(context, '/dashboard');
+    }
+
+    return data;
   }
 
   User? user_ = null;
@@ -173,11 +183,9 @@ class _LoginState extends State<Login> {
                                   // If the form is valid, display a snackbar. In the real world,
                                   // you'd often call a server or save the information in a database.
                                   ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
-                                        content: Text('Processing Data')),
+                                    const SnackBar(content: Text("Proses")),
                                   );
-                                  setState(() {});
-
+                                  _Login();
                                   // Navigator.push(
                                   //     context,
                                   //     MaterialPageRoute(
@@ -185,7 +193,7 @@ class _LoginState extends State<Login> {
                                 }
                               },
                               child: const Text(
-                                '-Login-',
+                                'Login',
                                 style: TextStyle(
                                     color: Color.fromARGB(255, 63, 63, 63)),
                               ),

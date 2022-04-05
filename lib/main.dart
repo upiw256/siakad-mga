@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, unused_import, avoid_unnecessary_containers, deprecated_member_use, non_constant_identifier_names
+// ignore_for_file: prefer_const_constructors, unused_import, avoid_unnecessary_containers, deprecated_member_use, non_constant_identifier_names, unnecessary_new
 
 import 'dart:developer';
 
@@ -20,10 +20,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(fontFamily: 'Poppins-Black'),
-      home: Splash(),
-    );
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: ThemeData(fontFamily: 'Poppins-Black'),
+        home: Splash(),
+        routes: <String, WidgetBuilder>{
+          '/dashboard': (BuildContext context) => new Dashboard(),
+        });
   }
 }
