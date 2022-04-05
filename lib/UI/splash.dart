@@ -22,7 +22,7 @@ class Splash extends StatelessWidget {
             ),
           ],
         ),
-        nextScreen: Dashboard(),
+        nextScreen: Login(),
         duration: 3000,
         splashTransition: SplashTransition.fadeTransition,
         pageTransitionType: PageTransitionType.fade,

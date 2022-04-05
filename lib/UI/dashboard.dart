@@ -1,40 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:sistem_akademik/controller/loginController.dart';
 
-class Dashboard extends StatelessWidget {
-  const Dashboard({Key? key}) : super(key: key);
+class Dashboard extends StatefulWidget {
+  const Dashboard({Key? key, User? user}) : super(key: key);
+
+  @override
+  State<Dashboard> createState() => _DashboardState();
+}
+
+class _DashboardState extends State<Dashboard> {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: MyDasboard(
+        title: 'Dashboard',
+      ),
+    );
+  }
+}
+
+class MyDasboard extends StatelessWidget {
+  final String title;
+
+  const MyDasboard({required this.title});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Dashboard',
-          style: TextStyle(
-            color: Color.fromARGB(255, 63, 63, 63),
-          ),
-        ),
-        backgroundColor: Color(0xFFFFF1BD),
+        title: Text(title),
       ),
-      body: Scaffold(
-        backgroundColor: Color(0xFFF3C892),
-        body: Row(
-          children: <Widget>[
-            SizedBox(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(10.0),
-                  child: Image.asset(
-                    'assets/images/logo.png',
-                    width: 100,
-                    height: 100,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-            )
-          ],
-        ),
+      body: Center(
+        child: Text("sip"),
       ),
     );
   }

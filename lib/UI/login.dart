@@ -1,8 +1,14 @@
-// ignore_for_file: avoid_unnecessary_containers, unnecessary_const, prefer_const_constructors, deprecated_member_use
+// ignore_for_file: avoid_unnecessary_containers, unnecessary_const, prefer_const_constructors, deprecated_member_use, prefer_void_to_null, avoid_init_to_null, unused_import, unused_field, unnecessary_new, unrelated_type_equality_checks, avoid_print, non_constant_identifier_names, unused_local_variable, unnecessary_import, unused_element
+
+import 'dart:convert';
+import 'dart:developer' as developer;
 
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:sistem_akademik/UI/dashboard.dart';
+import 'package:sistem_akademik/controller/loginController.dart';
+import 'package:http/http.dart' as http;
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -12,6 +18,19 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  TextEditingController userName = new TextEditingController();
+  TextEditingController Password = new TextEditingController();
+
+  Future<List> _Login() async {
+    final response =
+        await http.post(Uri.parse("http://192.168.50.2:8000/api/users"), body: {
+      "nisn": userName.text,
+      "password": Password.text,
+    });
+    return json.decode(response.body);
+  }
+
+  User? user_ = null;
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -68,6 +87,7 @@ class _LoginState extends State<Login> {
                               ),
                             ),
                             child: TextFormField(
+                              controller: userName,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
                                   return 'Username / NISN harus diisi';
@@ -116,6 +136,7 @@ class _LoginState extends State<Login> {
                                 }
                                 return null;
                               },
+                              controller: Password,
                               obscureText: true,
                               decoration: InputDecoration(
                                 labelText: 'Password',
@@ -155,14 +176,16 @@ class _LoginState extends State<Login> {
                                     const SnackBar(
                                         content: Text('Processing Data')),
                                   );
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => Dashboard()));
+                                  setState(() {});
+
+                                  // Navigator.push(
+                                  //     context,
+                                  //     MaterialPageRoute(
+                                  //         builder: (context) => Dashboard()));
                                 }
                               },
                               child: const Text(
-                                'Login',
+                                '-Login-',
                                 style: TextStyle(
                                     color: Color.fromARGB(255, 63, 63, 63)),
                               ),
