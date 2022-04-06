@@ -10,6 +10,8 @@ import 'package:sistem_akademik/UI/splash.dart';
 import 'UI/login.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+
   runApp(const MyApp());
 }
 
@@ -26,6 +28,7 @@ class MyApp extends StatelessWidget {
         home: Splash(),
         routes: <String, WidgetBuilder>{
           '/dashboard': (BuildContext context) => new Dashboard(),
+          '/login': (BuildContext context) => new Login(),
         });
   }
 }

@@ -5,6 +5,7 @@ import 'dart:developer' as developer;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_session/flutter_session.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:sistem_akademik/UI/dashboard.dart';
 import 'package:sistem_akademik/controller/loginController.dart';
@@ -34,6 +35,7 @@ class _LoginState extends State<Login> {
         msg = "Username atau Password salah";
       });
     } else {
+      await FlutterSession().set("token", userName.text);
       Navigator.pushReplacementNamed(context, '/dashboard');
     }
 
